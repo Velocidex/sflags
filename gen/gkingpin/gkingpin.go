@@ -3,8 +3,8 @@ package gkingpin
 import (
 	"unicode/utf8"
 
-	"github.com/alecthomas/kingpin"
-	"github.com/octago/sflags"
+	"github.com/Velocidex/sflags"
+	"gopkg.in/alecthomas/kingpin.v2"
 )
 
 type flagger interface {
