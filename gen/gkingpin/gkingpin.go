@@ -4,7 +4,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/Velocidex/sflags"
-	"gopkg.in/alecthomas/kingpin.v2"
+	"github.com/alecthomas/kingpin/v2"
 )
 
 type flagger interface {
