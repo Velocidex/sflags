@@ -153,6 +153,7 @@ func parseEnv(flagName string, field reflect.StructField, opt opts) string {
 	if envVar != "" && opt.envPrefix != "" && !ignoreEnvPrefix {
 		envVar = opt.envPrefix + envVar
 	}
+
 	return envVar
 }
 
