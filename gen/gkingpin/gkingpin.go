@@ -1,6 +1,7 @@
 package gkingpin
 
 import (
+	"strings"
 	"unicode/utf8"
 
 	"github.com/Velocidex/sflags"
@@ -22,7 +23,7 @@ func GenerateTo(src []*sflags.Flag, dst flagger) {
 		flag := dst.Flag(srcFlag.Name, srcFlag.Usage)
 		flag.SetValue(srcFlag.Value)
 		if srcFlag.EnvName != "" {
-			flag.Envar(srcFlag.EnvName)
+			flag.Envar(strings.ReplaceAll(srcFlag.EnvName, ".", "_"))
 		}
 		if srcFlag.Hidden {
 			flag.Hidden()

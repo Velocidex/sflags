@@ -1,3 +1,8 @@
+This package is a cut down version of github.com/octago/sflags for use
+in Velociraptor. Since Velociraptor only uses kingpin we removed
+support for other libraries to reduce dependencies.
+
+
 # Flags based on structures. [![GoDoc](https://godoc.org/github.com/octago/sflags?status.svg)](http://godoc.org/github.com/octago/sflags) [![Build Status](https://travis-ci.org/octago/sflags.svg?branch=master)](https://travis-ci.org/octago/sflags)  [![codecov](https://codecov.io/gh/octago/sflags/branch/master/graph/badge.svg)](https://codecov.io/gh/octago/sflags)  [![Go Report Card](https://goreportcard.com/badge/github.com/octago/sflags)](https://goreportcard.com/report/github.com/octago/sflags)
 
 The sflags package uses structs, reflection and struct field tags
@@ -7,15 +12,15 @@ An example:
 
 ```golang
 type HTTPConfig struct {
-	Host    string        `desc:"HTTP host"`
-	Port    int           `flag:"port p" desc:"some port"`
-	SSL     bool          `env:"HTTP_SSL_VALUE"`
-	Timeout time.Duration `flag:",deprecated,hidden"`
+    Host    string        `desc:"HTTP host"`
+    Port    int           `flag:"port p" desc:"some port"`
+    SSL     bool          `env:"HTTP_SSL_VALUE"`
+    Timeout time.Duration `flag:",deprecated,hidden"`
 }
 
 type Config struct {
-	HTTP  HTTPConfig
-	Stats StatsConfig
+    HTTP  HTTPConfig
+    Stats StatsConfig
 }
 ```
 
@@ -86,7 +91,7 @@ And you can use your favorite flag or cli library!
 | viper | [ ] | [ ] | [ ] | [ ] |
 
   \[x] - feature is supported and implemented
-  
+
   `-` - feature can't be implemented for this cli library
 
 Simple example for flag library:
@@ -95,38 +100,38 @@ Simple example for flag library:
 package main
 
 import (
-	"flag"
-	"log"
-	"time"
+    "flag"
+    "log"
+    "time"
 
-	"github.com/octago/sflags/gen/gflag"
+    "github.com/octago/sflags/gen/gflag"
 )
 
 type httpConfig struct {
-	Host    string `desc:"HTTP host"`
-	Port    int
-	SSL     bool
-	Timeout time.Duration
+    Host    string `desc:"HTTP host"`
+    Port    int
+    SSL     bool
+    Timeout time.Duration
 }
 
 type config struct {
-	HTTP httpConfig
+    HTTP httpConfig
 }
 
 func main() {
-	cfg := &config{
-		HTTP: httpConfig{
-			Host:    "127.0.0.1",
-			Port:    6000,
-			SSL:     false,
-			Timeout: 15 * time.Second,
-		},
-	}
-	err := gflag.ParseToDef(cfg)
-	if err != nil {
-		log.Fatalf("err: %v", err)
-	}
-	flag.Parse()
+    cfg := &config{
+        HTTP: httpConfig{
+            Host:    "127.0.0.1",
+            Port:    6000,
+            SSL:     false,
+            Timeout: 15 * time.Second,
+        },
+    }
+    err := gflag.ParseToDef(cfg)
+    if err != nil {
+        log.Fatalf("err: %v", err)
+    }
+    flag.Parse()
 }
 ```
 
@@ -135,13 +140,13 @@ That code generates next output:
 go run ./main.go --help
 Usage of _obj/exe/main:
   -http-host value
-    	HTTP host (default 127.0.0.1)
+        HTTP host (default 127.0.0.1)
   -http-port value
-    	 (default 6000)
+         (default 6000)
   -http-ssl
 
   -http-timeout value
-    	 (default 15s)
+         (default 15s)
 exit status 2
 ```
 
@@ -181,7 +186,7 @@ Addr string `desc:"HTTP address"`
 this description produces something like:
 ```
   -addr value
-    	HTTP host (default 127.0.0.1)
+        HTTP host (default 127.0.0.1)
 ```
 
 ## Options for env tag
@@ -221,7 +226,7 @@ func Flatten(val bool)
 ## Known issues
 
  - kingpin doesn't pass value for boolean arguments. Counter can't get initial value from arguments.
- 
+
 ## Similar projects
 
  * https://github.com/jaffee/commandeer
